@@ -8,12 +8,13 @@ load_dotenv()
 
 
 class Command(BaseCommand):
+    """Команда предназначенная для создания пользователей с различным уровнем доступа"""
     def handle(self, *args, **options):
         admin = User.objects.create(
             email='admin@sky.pro',
             first_name='Admin',
             last_name='Adminov',
-            role='moderator',
+            # role='moderator',
             is_staff=True,
             is_superuser=True,
             is_active=True
@@ -26,7 +27,7 @@ class Command(BaseCommand):
             email='moderator@sky.pro',
             first_name='Moderator',
             last_name='Moderatov',
-            role='moderator',
+            # role='moderator',
             is_staff=True,
             is_superuser=False,
             is_active=True
@@ -39,7 +40,7 @@ class Command(BaseCommand):
             email='member@sky.pro',
             first_name='Member',
             last_name='Memberov',
-            role='member',
+            # role='member',
             is_staff=False,
             is_superuser=False,
             is_active=True
