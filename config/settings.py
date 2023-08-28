@@ -156,7 +156,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=100),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=180),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
 }
 
@@ -171,6 +171,13 @@ CSRF_TRUSTED_ORIGINS = [
 
 CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
 CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/0"
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Europe/Minsk'
+CELERY_IMPORTS = ('habit.tasks', )
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.com'
@@ -181,3 +188,4 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
 TG_BOT_TOKEN = os.getenv('TG_BOT_TOKEN')
+TG_CHAT_ID = os.getenv("TG_CHAT_ID")

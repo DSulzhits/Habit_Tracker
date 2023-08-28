@@ -5,6 +5,7 @@ NULLABLE = {'null': True, 'blank': True}
 
 
 class Habit(models.Model):
+    """Модель полезной привычки, связана внешним ключом с моделью User"""
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, verbose_name='создатель привычки', **NULLABLE)
     name = models.CharField(max_length=150, verbose_name='название')
     place = models.CharField(max_length=150, verbose_name='место')

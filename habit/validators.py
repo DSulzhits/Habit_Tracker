@@ -14,7 +14,7 @@ def HabitValidator(value):
         raise serializers.ValidationError('Исключён одновременный выбор связанной привычки и указания вознаграждения.')
     if value.get('time_for_execution') > time(00, 2):
         raise serializers.ValidationError('Время выполнения должно быть не больше 120 секунд.')
-    if 'bound_habit' in value and value.get('bound_habit').is_pleasurable:
+    if 'bound_habit' in value and value.get('bound_habit').is_pleasant:
         raise serializers.ValidationError('В связанные привычки могут попадать только привычки с признаком приятной '
                                           'привычки.')
     if value.get('bound_habit') and value.get('reward'):
