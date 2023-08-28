@@ -6,7 +6,9 @@ from users.models import User, UserRoles
 
 
 class HabitsTestCase(APITestCase):
+    """Тестирование кода"""
     def setUp(self) -> None:
+        """Базовый сетап"""
         self.user = User.objects.create(
             email='tester@test1.com',
             role=UserRoles.MODERATOR,
@@ -23,6 +25,7 @@ class HabitsTestCase(APITestCase):
 
     @staticmethod
     def create_test_habit(user):
+        """Метод создающий объект для тестирования"""
         test_habit = Habit.objects.create(
             created_by=user,
             name='test_habit',
@@ -39,6 +42,7 @@ class HabitsTestCase(APITestCase):
         return test_habit
 
     def test_habit_create(self):
+        """Тест создания привычки (с корректными данными и с заведомо неверными данными)"""
         data = {
             'created_by': 1,
             'name': 'test_habit_create',
@@ -74,6 +78,7 @@ class HabitsTestCase(APITestCase):
         self.assertEqual(bad_response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_habits_list(self):
+        """Тестирование получения списка привычек"""
         self.create_test_habit(self.user)
         response = self.client.get('/habits/')
         habit_list = response.json()
@@ -82,6 +87,7 @@ class HabitsTestCase(APITestCase):
         self.assertEqual(habit_list['results'][0]['name'], 'test_habit')
 
     def test_habits_is_public(self):
+        """Тестирование получения списка привычек со статусом is_public=True"""
         self.create_test_habit(self.user)
         response = self.client.get('/habits_public/')
         habit_public = response.json()
