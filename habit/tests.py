@@ -80,3 +80,14 @@ class HabitsTestCase(APITestCase):
         # print(habit_list['results'][0]['name'])
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(habit_list['results'][0]['name'], 'test_habit')
+
+    def test_habits_is_public(self):
+        self.create_test_habit(self.user)
+        response = self.client.get('/habits_public/')
+        habit_public = response.json()
+        # print(habit_public)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(habit_public['results'][0]['name'], 'test_habit')
+
+
+
