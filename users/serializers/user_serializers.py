@@ -24,7 +24,7 @@ class UserAuthSerializer(ModelSerializer):
         fields = '__all__'
 
 
-class UserTokenObtainPairSerializer(TokenObtainPairSerializer, ABC):
+class UserTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
