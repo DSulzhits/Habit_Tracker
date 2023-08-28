@@ -7,12 +7,12 @@
       "name": "Отжиматься по утрам",
       "place": "Дом",
       "time": "07:15:00",
-      "action": "3 подхода по 10 повторений",
+      "action": "10 повторений",
       "is_pleasant": true,
       "bound_habit": null,
       "periodic": 1,
       "reward": "Сила мышц",
-      "time_for_execution": "00:15:00",
+      "time_for_execution": "00:01:59",
       "public": true
     }
   },
@@ -24,12 +24,12 @@
       "name": "Качать пресс",
       "place": "Дом",
       "time": "07:30:00",
-      "action": "3 подхода по 15 повторений",
+      "action": "15 повторений",
       "is_pleasant": true,
       "bound_habit": 1,
       "periodic": 1,
       "reward": "Рельефный торс",
-      "time_for_execution": "00:15:00",
+      "time_for_execution": "00:01:59",
       "public": true
     }
   }
