@@ -9,6 +9,7 @@ class Habit(models.Model):
     name = models.CharField(max_length=150, verbose_name='название')
     place = models.CharField(max_length=150, verbose_name='место')
     time = models.TimeField(verbose_name='время')
+    action = models.CharField(max_length=150, verbose_name='выполняемое действие')
     is_pleasant = models.BooleanField(default=True, verbose_name='признак полезной привычки')
     bound_habit = models.ForeignKey('self', on_delete=models.SET_NULL, **NULLABLE, verbose_name='связанная привычка')
     periodic = models.IntegerField(default=1, verbose_name='периодичность дни')
