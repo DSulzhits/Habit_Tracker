@@ -14,14 +14,14 @@ class HabitViewSet(ModelViewSet):
     pagination_class = HabitPaginator
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        serializer.save(created_by=self.request.user)
 
     def get_queryset(self):
         user = self.request.user
         if user.is_superuser or user.is_staff or user.role == UserRoles.MODERATOR:
             return Habit.objects.all()
         else:
-            return Habit.objects.filter(owner=user)
+            return Habit.objects.filter(created_by=user)
 
 
 class HabitIsPublicListAPIView(ListAPIView):
