@@ -3,6 +3,8 @@ from users.apps import UsersConfig
 from users.views import *
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+app_name = UsersConfig.name
+
 urlpatterns = [
     # user urlpatterns
     path('', UserListAPIView.as_view(), name='users_list'),
