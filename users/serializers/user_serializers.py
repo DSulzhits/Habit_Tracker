@@ -9,7 +9,7 @@ from users.models import User
 class UserSerializer(ModelSerializer):
     class Meta:
         model = User
-        exclude = 'avatar'
+        exclude = ('avatar',)
 
 
 class UserCreateSerializer(ModelSerializer):
