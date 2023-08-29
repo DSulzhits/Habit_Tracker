@@ -8,10 +8,13 @@ load_dotenv()
 
 
 class Command(BaseCommand):
-    """Команда предназначенная для создания пользователей с различным уровнем доступа"""
+    """Команда предназначенная для создания пользователей с различным уровнем доступа
+    для создания админа необходимо ввести существующий адрес электронной почты,
+    чтобы работал сервис отправки почты при создании полезной привычки"""
+
     def handle(self, *args, **options):
         admin = User.objects.create(
-            email='admin@sky.pro',
+            email=os.getenv("REAL_EMAIL"),
             first_name='Admin',
             last_name='Adminov',
             role='moderator',
