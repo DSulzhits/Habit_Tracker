@@ -5,7 +5,7 @@ from habit.serializers.habit_serializers import HabitSerializer
 from rest_framework.permissions import IsAuthenticated
 from habit.paginators import HabitPaginator
 from users.models import UserRoles
-from habit.services import send_habit_email
+from habit.services import send_habit_email, set_schedule
 
 
 class HabitViewSet(ModelViewSet):
@@ -20,8 +20,9 @@ class HabitViewSet(ModelViewSet):
         """Поле created_by автоматически заполняется при создании привычки
         в нем будет указан авторизованный пользователь"""
         serializer.save(created_by=self.request.user)
+        habit = serializer.save()
+        set_schedule(habit)
         send_habit_email(self.request.user.email)
-
 
     def get_queryset(self):
         """Получение списка привычек исходя из статуса и допуска пользователей"""
