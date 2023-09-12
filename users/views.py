@@ -33,10 +33,10 @@ class UserUpdateAPIView(UpdateAPIView):
         return User.objects.filter(pk=user.id)
 
 
-# class UserDestroyAPIView(DestroyAPIView):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
-#     permission_classes = [IsAuthenticated]
+class UserDestroyAPIView(DestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
 
 
 class UserTokenObtainPairView(TokenObtainPairView):
