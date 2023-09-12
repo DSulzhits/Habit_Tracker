@@ -90,13 +90,27 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# # LOCAL
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('POSTGRESSQL_DB_NAME'),
+#         'USER': os.getenv('POSTGRESSQL_USER'),
+#         'PASSWORD': os.getenv('POSTGRESSQL_PASSWORD'),
+#         'PORT': os.getenv('POSTGRESSQL_PORT'),
+#         'HOST': os.getenv('POSTGRESSQL_HOST')
+#     }
+# }
+
+# DOCKER
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRESSQL_DB_NAME'),
-        'USER': os.getenv('POSTGRESSQL_USER'),
-        'PORT': '5432',
-        'PASSWORD': os.getenv('POSTGRESSQL_KEY')
+        'NAME': os.getenv('POSTGRESSQL_DB_NAME_DOCKER'),
+        'USER': os.getenv('POSTGRESSQL_USER_DOCKER'),
+        'PASSWORD': os.getenv('POSTGRESSQL_PASSWORD_DOCKER'),
+        'PORT': os.getenv('POSTGRESSQL_PORT_DOCKER'),
+        'HOST': os.getenv('POSTGRESSQL_HOST_DOCKER')
     }
 }
 
@@ -179,8 +193,14 @@ CSRF_TRUSTED_ORIGINS = [
     "https://read-and-write.example.com",
 ]
 
-CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
-CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/0"
+# # LOCAL
+# CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
+# CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/0"
+
+# DOCKER
+CELERY_BROKER_URL = "redis://redis:6379/0"  # for docker
+CELERY_RESULT_BACKEND = "redis://redis:6379/0"  # for docker
+
 CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 CELERY_ACCEPT_CONTENT = ['application/json']
