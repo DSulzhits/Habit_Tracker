@@ -32,6 +32,7 @@ drf-yasg = "^1.21.7"
 
 [tool.poetry.group.other.dependencies]
 ipython = "^8.14.0"
+flake8 = "^6.1.0"
 
 [build-system]
 requires = ["poetry-core"]
