@@ -9,5 +9,5 @@ router = DefaultRouter()
 router.register(r'habits', HabitViewSet, basename='habits')
 
 urlpatterns = [
-                  path('habits_public/', HabitIsPublicListAPIView.as_view(), name='habits_is_public')
-              ] + router.urls
+    path('habits_public/', HabitIsPublicListAPIView.as_view(), name='habits_is_public')
+] + router.urls
